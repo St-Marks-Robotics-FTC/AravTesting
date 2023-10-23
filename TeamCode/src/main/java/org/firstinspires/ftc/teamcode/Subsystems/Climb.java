@@ -22,13 +22,13 @@ public class Climb {
     }
 
     // Move the climb mechanism to position 1
-    public void moveToPosition1() {
+    public void hold() {
         servo1.setPosition(POSITION_1);
         servo2.setPosition(POSITION_1);
     }
 
     // Move the climb mechanism to position 2
-    public void moveToPosition2() {
+    public void expand() {
         servo1.setPosition(POSITION_2);
         servo2.setPosition(POSITION_2);
     }

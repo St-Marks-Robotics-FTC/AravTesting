@@ -4,7 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Claw;
+import org.firstinspires.ftc.teamcode.Subsystems.Climb;
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.Subsystems.Drone;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake;
 import org.firstinspires.ftc.teamcode.Subsystems.Slides;
@@ -19,6 +21,9 @@ public class CenterStageRobot extends LinearOpMode {
     private Virtual4Bar virtual4Bar;
     private Slides slides;
 
+    private Drone drone;
+    private Climb climb;
+
     @Override
     public void runOpMode() {
         // Initialize the subsystems
@@ -27,7 +32,11 @@ public class CenterStageRobot extends LinearOpMode {
         claw = new Claw(hardwareMap);
         virtual4Bar = new Virtual4Bar(hardwareMap);
 
+        drone = new Drone(hardwareMap);
+        climb = new Climb(hardwareMap);
+
         outtake = new Outtake(claw, virtual4Bar, slides);
+
 
         // Wait for the start button to be pressed
         waitForStart();
@@ -48,14 +57,30 @@ public class CenterStageRobot extends LinearOpMode {
                 intake.stopIntake();
             }
 
-            // Outtake control
+
+            // Climb control
             if (gamepad1.x) {
+                climb.expand();
+            }
+
+            // Drone control
+            if (gamepad1.y) {
+                drone.shoot();
+            }
+
+
+            if (gamepad1.b) {
                 outtake.performOuttake();
             }
 
-            // Add other controls as needed
 
-            // Ensure the robot doesn't update faster than the desired frame rate
+            if (gamepad2.left_bumper) {
+                claw.rotateLeft();
+            } else if (gamepad2.right_bumper) {
+                claw.rotateRight();
+            }
+
+
         }
     }
 }
