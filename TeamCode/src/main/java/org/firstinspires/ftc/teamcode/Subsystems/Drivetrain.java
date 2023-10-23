@@ -6,21 +6,19 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Drivetrain {
     private DcMotor frontLeft;
     private DcMotor frontRight;
-    private DcMotor rearLeft;
-    private DcMotor rearRight;
+    private DcMotor backLeft;
+    private DcMotor backRight;
 
     public Drivetrain(HardwareMap hardwareMap) {
         // Initialize the motors based on their names in the hardware configuration
-        frontLeft = hardwareMap.dcMotor.get("frontLeft");
-        frontRight = hardwareMap.dcMotor.get("frontRight");
-        rearLeft = hardwareMap.dcMotor.get("rearLeft");
-        rearRight = hardwareMap.dcMotor.get("rearRight");
+        frontLeft = hardwareMap.dcMotor.get("leftFront");
+        frontRight = hardwareMap.dcMotor.get("rightFront");
+        backLeft = hardwareMap.dcMotor.get("leftBack");
+        backRight = hardwareMap.dcMotor.get("rightBack");
 
         // Set motor directions (adjust as needed)
-        frontLeft.setDirection(DcMotor.Direction.FORWARD);
-        frontRight.setDirection(DcMotor.Direction.REVERSE);
-        rearLeft.setDirection(DcMotor.Direction.FORWARD);
-        rearRight.setDirection(DcMotor.Direction.REVERSE);
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
     }
 
     // Drive the robot with mecanum wheels
@@ -46,15 +44,15 @@ public class Drivetrain {
         // Set motor powers
         frontLeft.setPower(powerFrontLeft);
         frontRight.setPower(powerFrontRight);
-        rearLeft.setPower(powerRearLeft);
-        rearRight.setPower(powerRearRight);
+        backLeft.setPower(powerRearLeft);
+        backRight.setPower(powerRearRight);
     }
 
     // Stop the drivetrain
     public void stop() {
         frontLeft.setPower(0);
         frontRight.setPower(0);
-        rearLeft.setPower(0);
-        rearRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
     }
 }
