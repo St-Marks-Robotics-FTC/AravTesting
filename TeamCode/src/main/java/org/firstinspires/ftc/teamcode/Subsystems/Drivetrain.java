@@ -22,7 +22,7 @@ public class Drivetrain {
     }
 
     // Drive the robot with mecanum wheels
-    public void drive(double forward, double strafe, double rotate) {
+    public void drive(double forward, double strafe, double rotate, boolean slowMode) {
         double powerFrontLeft = forward + strafe + rotate;
         double powerFrontRight = forward - strafe - rotate;
         double powerRearLeft = forward - strafe + rotate;

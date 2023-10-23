@@ -3,8 +3,9 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 public class Outtake {
     private Claw claw;
     private Virtual4Bar virtual4Bar;
+    private Slides slides;
 
-    public Outtake(Claw claw, Virtual4Bar virtual4Bar) {
+    public Outtake(Claw claw, Virtual4Bar virtual4Bar, Slides slides) {
         this.claw = claw;
         this.virtual4Bar = virtual4Bar;
     }
