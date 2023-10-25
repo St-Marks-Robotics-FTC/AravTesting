@@ -3,14 +3,14 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Subsystems.Claw;
-import org.firstinspires.ftc.teamcode.Subsystems.Climb;
-import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.Subsystems.Drone;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake;
-import org.firstinspires.ftc.teamcode.Subsystems.Outtake;
-import org.firstinspires.ftc.teamcode.Subsystems.Slides;
-import org.firstinspires.ftc.teamcode.Subsystems.Virtual4Bar;
+import org.firstinspires.ftc.teamcode.BadSubsystems.Claw;
+import org.firstinspires.ftc.teamcode.BadSubsystems.Climb;
+import org.firstinspires.ftc.teamcode.BadSubsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.BadSubsystems.Drone;
+import org.firstinspires.ftc.teamcode.BadSubsystems.Intake;
+import org.firstinspires.ftc.teamcode.BadSubsystems.Outtake;
+import org.firstinspires.ftc.teamcode.BadSubsystems.Slides;
+import org.firstinspires.ftc.teamcode.BadSubsystems.Virtual4Bar;
 
 @TeleOp(name = "TeleOp Example", group = "TeleOp")
 public class CenterStageRobot extends LinearOpMode {
