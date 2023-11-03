@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 public class BasicRobot extends LinearOpMode {
@@ -16,12 +17,21 @@ public class BasicRobot extends LinearOpMode {
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
 
+        DcMotor armMotor = hardwareMap.dcMotor.get("arm");
+
+        // claw servo
+        Servo clawServo = hardwareMap.servo.get("claw");
+
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
         // reverse the left side instead.
         // See the note about this earlier on this page.
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        // reset arm
+        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         waitForStart();
 
@@ -41,10 +51,36 @@ public class BasicRobot extends LinearOpMode {
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
 
-            frontLeftMotor.setPower(frontLeftPower);
-            backLeftMotor.setPower(backLeftPower);
-            frontRightMotor.setPower(frontRightPower);
-            backRightMotor.setPower(backRightPower);
+            if (gamepad1.left_bumper) {
+                frontLeftMotor.setPower(0.3 * frontLeftPower);
+                backLeftMotor.setPower(0.3 * backLeftPower);
+                frontRightMotor.setPower(0.3 * frontRightPower);
+                backRightMotor.setPower(0.3 * backRightPower);
+            } else {
+                frontLeftMotor.setPower(frontLeftPower);
+                backLeftMotor.setPower(backLeftPower);
+                frontRightMotor.setPower(frontRightPower);
+                backRightMotor.setPower(backRightPower);
+            }
+
+
+
+            if (gamepad1.y) {
+                armMotor.setTargetPosition(1000);
+                armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                armMotor.setPower(0.5);
+            } else if (gamepad1.a) {
+                armMotor.setTargetPosition(0);
+                armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                armMotor.setPower(0.5);
+            }
+
+            if (gamepad1.x) {
+                clawServo.setPosition(0.5);
+            } else if (gamepad1.b) {
+                clawServo.setPosition(0);
+            }
+            
         }
     }
 }
