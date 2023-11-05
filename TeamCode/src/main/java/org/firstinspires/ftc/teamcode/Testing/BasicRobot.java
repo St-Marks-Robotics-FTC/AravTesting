@@ -1,15 +1,30 @@
 package org.firstinspires.ftc.teamcode.Testing;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+@Config
 @TeleOp
 public class BasicRobot extends LinearOpMode {
+
+    public static double clawOpen = 0;
+    public static double clawClosed = 0.5;
+
+    public static int armUp = 1000;
+    public static int armDown = 0;
+
+
     @Override
     public void runOpMode() throws InterruptedException {
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+
+
         // Declare our motors
         // Make sure your ID's match your configuration
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
@@ -66,21 +81,21 @@ public class BasicRobot extends LinearOpMode {
 
 
             if (gamepad1.y) {
-                armMotor.setTargetPosition(1000);
+                armMotor.setTargetPosition(armUp);
                 armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 armMotor.setPower(0.5);
             } else if (gamepad1.a) {
-                armMotor.setTargetPosition(0);
+                armMotor.setTargetPosition(armDown);
                 armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 armMotor.setPower(0.5);
             }
 
             if (gamepad1.x) {
-                clawServo.setPosition(0.5);
+                clawServo.setPosition(clawClosed);
             } else if (gamepad1.b) {
-                clawServo.setPosition(0);
+                clawServo.setPosition(clawOpen);
             }
-            
+
         }
     }
 }
