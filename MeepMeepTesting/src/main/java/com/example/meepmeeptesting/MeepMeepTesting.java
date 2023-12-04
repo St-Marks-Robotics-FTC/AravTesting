@@ -14,14 +14,14 @@ public class MeepMeepTesting {
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(40, 40, Math.toRadians(128), Math.toRadians(128), 15)
+                .setConstraints(50, 45, Math.toRadians(128), Math.toRadians(128), 15)
                 // Set bot dimensions
                 .setDimensions(16, 17)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(15, -62, Math.toRadians(180)))
+                        drive.trajectorySequenceBuilder(new Pose2d(18, -62, Math.toRadians(180)))
 
-                                /*
-                                Redesign Bot 2+4
+
+                                //Redesign Bot 2+4
 
                                 //.splineTo(new Vector2d(10, -34), Math.toRadians(180))
                                 .lineTo(new Vector2d(10, -34))
@@ -36,7 +36,7 @@ public class MeepMeepTesting {
                                 .setReversed(true)
                                 .splineToConstantHeading(new Vector2d(12, -11.5), Math.toRadians(0))
                                 .splineToConstantHeading(new Vector2d(48, -30), Math.toRadians(0))
-                                .waitSeconds(1)
+                                .waitSeconds(0.5)
 
                                 .setReversed(false)
                                 .splineToConstantHeading(new Vector2d(12, -11.5), Math.toRadians(180))
@@ -45,8 +45,19 @@ public class MeepMeepTesting {
                                 .setReversed(true)
                                 .splineToConstantHeading(new Vector2d(12, -11.5), Math.toRadians(0))
                                 .splineToConstantHeading(new Vector2d(48, -30), Math.toRadians(0))
+                                .waitSeconds(0.5)
+
+                                .setReversed(false)
+                                .splineToConstantHeading(new Vector2d(12, -11.5), Math.toRadians(180))
+                                .splineToConstantHeading(new Vector2d(-14, -11.5), Math.toRadians(180))
+                                .splineToSplineHeading(new Pose2d(-58, -20, Math.toRadians(195)), Math.toRadians(195))
                                 .waitSeconds(1)
-*/
+                                .setReversed(true)
+                                .splineToSplineHeading(new Pose2d(-14, -11.5, Math.toRadians(180)), Math.toRadians(0))
+                                .splineToConstantHeading(new Vector2d(12, -11.5), Math.toRadians(0))
+                                .splineToConstantHeading(new Vector2d(48, -30), Math.toRadians(0))
+                                .waitSeconds(0.5)
+
 
 /*
                                 // TD Bot
@@ -119,6 +130,20 @@ public class MeepMeepTesting {
                                 .splineToSplineHeading(new Pose2d(4, -11.5, Math.toRadians(160)), Math.toRadians(0))
                                 .splineToSplineHeading(new Pose2d(12, -11.5, Math.toRadians(160)), Math.toRadians(0))
                                 .waitSeconds(1)
+*/
+                                /*
+                                // updated claw bot close side
+                                .splineTo(new Vector2d(10, -34), Math.toRadians(180))
+                                .waitSeconds(1)
+                                .setTangent(Math.toRadians(0))
+                                .splineToSplineHeading(new Pose2d(49, -30, Math.toRadians(0 + 1e-6)), Math.toRadians(0))
+                                 */
+                                /*
+                                .splineTo(new Vector2d(-33, -34), Math.toRadians(0))
+                                .setTangent(Math.toRadians(180))
+                                .splineToConstantHeading(new Vector2d(-33, -11.5), Math.toRadians(0))
+                                .splineToConstantHeading(new Vector2d(5, -11.5), Math.toRadians(0))
+                                .splineToConstantHeading(new Vector2d(47, -40), Math.toRadians(0))
 */
 
                                 .build()
